@@ -11,7 +11,9 @@ YAZDIKTAN SONRA HATA ÇIKACAK, PANİK YAPMA.
 ŞİMDİ .ENV DOSYASINDA
 DATABASE = epaw
 OLARAK DÜZENLE VE AZ ÖNCE EKLEDİĞİMİZ createDatabase FONKSİYON ÇAĞIRMASINI SİL.
-TEKRAR ÇALIŞTIR. AFİYET OLSUN.*/
+TEKRAR ÇALIŞTIR. AFİYET OLSUN.
+
+BRANCH ÇALIŞIYOR MU*/
 
 const mysql = require('mysql2');
 const express = require("express");
