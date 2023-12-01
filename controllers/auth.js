@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
 var accountType = "user";
-const query1 = "INSERT INTO " + accountType + " SET ?";
+// const query1 = "INSERT INTO " + accountType + " SET ?";
 
 
 const db = mysql.createConnection({
@@ -16,14 +16,14 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            return res.status(400).sendFile(__dirname + "/login.html", {
+            return res.status(400).sendFile(__dirname + "./public/login.html", {
                 message: "Please Provide an email and password"
             })
-        }
-        db.query('SELECT * FROM ${accountType} WHERE email = ?', [email], async (err, results) => {
+        } 
+        db.query(`SELECT * FROM ${accountType} WHERE email = ?`, [email], async (err, results) => {
             console.log(results);
             if (!results || !await bcrypt.compare(password, results[0].password)) {
-                res.status(401).sendFile(__dirname + '/login.html', {
+                res.status(401).sendFile(__dirname + './public/login.html', {
                     message: 'Email or Password is incorrect'
                 })
             } else {
@@ -52,7 +52,7 @@ exports.login = async (req, res) => {
 exports.register = (req, res) => {
     console.log(req.body);
     const { name, email, password, passwordConfirm } = req.body;
-    db.query('SELECT email from accountType WHERE email = ?', [email], async (err, results) => {
+    db.query(`SELECT email from ${accountType} WHERE email = ?`, [email], async (err, results) => {
         if (err) {
             console.log(err);
         } else {
@@ -70,7 +70,7 @@ exports.register = (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 8);
         console.log(hashedPassword);
 
-        db.query(query1, {user_name: name, email: email, password: hashedPassword} , (err, results) => {
+        db.query(`INSERT INTO ${accountType} SET ?`, {user_name: name, email: email, password: hashedPassword} , (err, results) => {
             if (err) {
                 console.log(err);
             } else {
@@ -93,7 +93,7 @@ exports.isLoggedIn = async (req, res, next) => {
             console.log(decoded);
 
             // 2. Check if the user still exist
-            db.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, results) => {
+            db.query(`SELECT * FROM ${accountType} WHERE id = ?`, [decoded.id], (err, results) => {
                 console.log(results);
                 if (!results) {
                     return next();

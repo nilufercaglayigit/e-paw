@@ -12,10 +12,10 @@ router.get("/login", (req, res) => {
 });
 router.get("/profile", authController.isLoggedIn, (req, res) => {
   if (req.user) {
-    res.sendFile("profile.html", { root: "./public/" });
+    res.sendFile("profile.html", { root: "./public/profile" });
   } else {
     res.sendFile("login.html", { root: "./public/" });
   }
 });
-//deneme
+
 module.exports = router;
