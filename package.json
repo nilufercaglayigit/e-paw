@@ -1,13 +1,12 @@
 {
   "name": "my_sql",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "nilu",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,5 +18,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.6.5",
     "nodemon": "^2.0.22"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

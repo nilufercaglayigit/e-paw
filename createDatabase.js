@@ -1,3 +1,18 @@
+/* BU DOSYAYI AÇMAK İÇİN:
+ÖNCE .ENV DOSYASI OLUŞTUR, İÇİNE
+DATABASE =
+HOST = localhost
+DATABASE_USER = root
+PASSWORD =  
+YAZ. SONRASINDA AŞAĞIDA ÇAĞIRILAN FONKSİYONLARIN BAŞINDA
+createDatabase(newDatabaseName);
+YAZILI OLMASI GEREKLİ. YAZMIYOSA YAZ VE KODU ÇALIŞTIR.
+YAZDIKTAN SONRA HATA ÇIKACAK, PANİK YAPMA.
+ŞİMDİ .ENV DOSYASINDA
+DATABASE = epaw
+OLARAK DÜZENLE VE AZ ÖNCE EKLEDİĞİMİZ createDatabase FONKSİYON ÇAĞIRMASINI SİL.
+TEKRAR ÇALIŞTIR. AFİYET OLSUN.*/
+
 const mysql = require('mysql2');
 const express = require("express");
 const path = require("path");
@@ -229,6 +244,7 @@ function addForeign(){
 
 
   // Örnek olarak fonksiyonu kullanma
+  //createDatabase(newDatabaseName);
   createUserTable();
   createVetTable();
   createPetTable();
